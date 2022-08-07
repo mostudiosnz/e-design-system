@@ -47,7 +47,7 @@ public struct ImageButton: View {
 }
 
 public struct HorizontalLeadingView<LeadingView>: View where LeadingView: View {
-    let leadingView: LeadingView
+    public let leadingView: LeadingView
     public var body: some View {
         HStack {
             leadingView
@@ -57,7 +57,7 @@ public struct HorizontalLeadingView<LeadingView>: View where LeadingView: View {
 }
 
 public struct HorizontalTrailingView<TrailingView>: View where TrailingView: View {
-    let trailingView: TrailingView
+    public let trailingView: TrailingView
     public var body: some View {
         HStack {
             Spacer()

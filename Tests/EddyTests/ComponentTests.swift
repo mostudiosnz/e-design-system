@@ -1,5 +1,5 @@
 import XCTest
-@testable import MOEDesignSystem
+@testable import Eddy
 
 final class DesignSystemTests: XCTestCase {
     func testExample() throws {

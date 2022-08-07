@@ -4,7 +4,10 @@ import UIKit
 #endif
 
 public struct DefaultFont: ViewModifier {
-    public let style: Font.TextStyle
+    let style: Font.TextStyle
+    public init(style: Font.TextStyle) {
+        self.style = style
+    }
     public func body(content: Content) -> some View {
         content.font(style.defaultFont)
     }

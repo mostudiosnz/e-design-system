@@ -1,9 +1,9 @@
 import SwiftUI
 
 public struct AppButton: View {
-    let text: String
-    let style: Font.TextStyle
-    let action: () -> Void
+    public let text: String
+    public let style: Font.TextStyle
+    public let action: () -> Void
     public init(_ text: String, style: Font.TextStyle = .body, action: @escaping () -> Void) {
         self.text = text
         self.style = style
@@ -16,8 +16,8 @@ public struct AppButton: View {
 }
 
 public struct CustomButton<Content>: View where Content: View {
-    let action: () -> Void
-    let label: () -> Content
+    public let action: () -> Void
+    public let label: () -> Content
     public init(@ViewBuilder label: @escaping () -> Content, action: @escaping () -> Void) {
         self.action = action
         self.label = label
@@ -28,9 +28,9 @@ public struct CustomButton<Content>: View where Content: View {
 }
 
 public struct ImageButton: View {
-    let systemName: String
-    let scale: Image.Scale
-    let action: () -> Void
+    public let systemName: String
+    public let scale: Image.Scale
+    public let action: () -> Void
     public init(systemName: String, scale: Image.Scale = .large, action: @escaping () -> Void) {
         self.systemName = systemName
         self.scale = scale
@@ -47,7 +47,7 @@ public struct ImageButton: View {
 }
 
 public struct HorizontalLeadingView<LeadingView>: View where LeadingView: View {
-    let leadingView: LeadingView
+    public let leadingView: LeadingView
     public var body: some View {
         HStack {
             leadingView
@@ -57,7 +57,7 @@ public struct HorizontalLeadingView<LeadingView>: View where LeadingView: View {
 }
 
 public struct HorizontalTrailingView<TrailingView>: View where TrailingView: View {
-    let trailingView: TrailingView
+    public let trailingView: TrailingView
     public var body: some View {
         HStack {
             Spacer()
@@ -68,8 +68,8 @@ public struct HorizontalTrailingView<TrailingView>: View where TrailingView: Vie
 
 public struct HorizontalLeadingTrailingView<LeadingView, TrailingView>: View
 where LeadingView: View, TrailingView: View {
-    private let leadingView: LeadingView
-    private let trailingView: TrailingView
+    public let leadingView: LeadingView
+    public let trailingView: TrailingView
     public init(
         leading leadingView: LeadingView,
         trailing trailingView: TrailingView) {

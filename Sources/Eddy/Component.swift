@@ -3,41 +3,48 @@ import SwiftUI
 public struct AppButton: View {
     let text: String
     let style: Font.TextStyle
+    let role: ButtonRole?
     let action: () -> Void
-    public init(_ text: String, style: Font.TextStyle = .body, action: @escaping () -> Void) {
+    public init(_ text: String, style: Font.TextStyle = .body, role: ButtonRole? = nil, action: @escaping () -> Void) {
         self.text = text
         self.style = style
+        self.role = role
         self.action = action
     }
     public var body: some View {
-        Button(text, action: action)
+        Button(text, role: role, action: action)
             .modifier(DefaultFont(style: style))
     }
 }
 
 public struct CustomButton<Content>: View where Content: View {
+    let role: ButtonRole?
     let action: () -> Void
     let label: () -> Content
-    public init(@ViewBuilder label: @escaping () -> Content, action: @escaping () -> Void) {
+    public init(role: ButtonRole? = nil, @ViewBuilder label: @escaping () -> Content, action: @escaping () -> Void) {
+        self.role = role
         self.action = action
         self.label = label
     }
     public var body: some View {
-        Button(action: action, label: label)
+        Button(role: role, action: action, label: label)
     }
 }
 
 public struct ImageButton: View {
     let systemName: String
+    let role: ButtonRole?
     let scale: Image.Scale
     let action: () -> Void
-    public init(systemName: String, scale: Image.Scale = .large, action: @escaping () -> Void) {
+    public init(systemName: String, role: ButtonRole? = nil, scale: Image.Scale = .large, action: @escaping () -> Void) {
         self.systemName = systemName
+        self.role = role
         self.scale = scale
         self.action = action
     }
     public var body: some View {
         Button(
+            role: role,
             action: action,
             label: {
                 Image(systemName: systemName).imageScale(scale)

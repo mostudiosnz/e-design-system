@@ -97,3 +97,63 @@ where LeadingView: View, TrailingView: View {
         }
     }
 }
+
+public typealias SectionText = AppText.Subheadline
+
+public struct AppSection<Content>: View where Content: View {
+    let content: () -> Content
+    public init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+    public var body: some View {
+        Section(content: content)
+    }
+}
+
+public struct AppHeaderSection<Content>: View where Content: View {
+    let header: SectionText
+    let content: () -> Content
+    public init(
+        key: String,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.header = AppText.Subheadline(key: key)
+        self.content = content
+    }
+    public var body: some View {
+        Section(content: content, header: { header })
+    }
+}
+
+public struct AppFooterSection<Content>: View where Content: View {
+    let footer: SectionText
+    let content: () -> Content
+    public init(
+        key: String,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.footer = AppText.Subheadline(key: key)
+        self.content = content
+    }
+    public var body: some View {
+        Section(content: content, footer: { footer })
+    }
+}
+
+public struct AppHeaderFooterSection<Content>: View where Content: View {
+    let header: SectionText
+    let footer: SectionText
+    let content: () -> Content
+    public init(
+        headerKey: String,
+        footerKey: String,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.header = AppText.Subheadline(key: headerKey)
+        self.footer = AppText.Subheadline(key: footerKey)
+        self.content = content
+    }
+    public var body: some View {
+        Section(content: content, header: { header }, footer: { footer })
+    }
+}

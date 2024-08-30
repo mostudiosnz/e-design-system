@@ -63,15 +63,20 @@ public struct ImageButton: View {
 }
 
 public struct HorizontalLeadingView<LeadingView>: View where LeadingView: View {
+    let alignment: VerticalAlignment
+    let spacing: CGFloat
     let leadingView: LeadingView
-    public init(leadingView: LeadingView) {
-        self.leadingView = leadingView
-    }
-    public init(@ViewBuilder leading leadingBuilder: () -> LeadingView) {
+    public init(
+        alignment: VerticalAlignment = .center,
+        spacing: CGFloat = 0,
+        @ViewBuilder leading leadingBuilder: () -> LeadingView
+    ) {
+        self.alignment = alignment
+        self.spacing = spacing
         self.leadingView = leadingBuilder()
     }
     public var body: some View {
-        HStack {
+        HStack(spacing: spacing) {
             leadingView
             Spacer()
         }
@@ -79,15 +84,20 @@ public struct HorizontalLeadingView<LeadingView>: View where LeadingView: View {
 }
 
 public struct HorizontalTrailingView<TrailingView>: View where TrailingView: View {
+    let alignment: VerticalAlignment
+    let spacing: CGFloat
     let trailingView: TrailingView
-    public init(trailingView: TrailingView) {
-        self.trailingView = trailingView
-    }
-    public init(@ViewBuilder trailing trailingBuilder: () -> TrailingView) {
+    public init(
+        alignment: VerticalAlignment = .center,
+        spacing: CGFloat = 0,
+        @ViewBuilder trailing trailingBuilder: () -> TrailingView
+    ) {
+        self.alignment = alignment
+        self.spacing = spacing
         self.trailingView = trailingBuilder()
     }
     public var body: some View {
-        HStack {
+        HStack(alignment: alignment, spacing: spacing) {
             Spacer()
             trailingView
         }
@@ -96,24 +106,23 @@ public struct HorizontalTrailingView<TrailingView>: View where TrailingView: Vie
 
 public struct HorizontalLeadingTrailingView<LeadingView, TrailingView>: View
 where LeadingView: View, TrailingView: View {
+    let alignment: VerticalAlignment
+    let spacing: CGFloat
     let leadingView: LeadingView
     let trailingView: TrailingView
     public init(
-        leading leadingView: LeadingView,
-        trailing trailingView: TrailingView
-    ) {
-        self.leadingView = leadingView
-        self.trailingView = trailingView
-    }
-    public init(
+        alignment: VerticalAlignment = .center,
+        spacing: CGFloat = 0,
         @ViewBuilder leading leadingBuilder: () -> LeadingView,
         @ViewBuilder trailing trailingBuilder: () -> TrailingView
     ) {
+        self.alignment = alignment
+        self.spacing = spacing
         self.leadingView = leadingBuilder()
         self.trailingView = trailingBuilder()
     }
     public var body: some View {
-        HStack {
+        HStack(alignment: alignment, spacing: spacing) {
             leadingView
             Spacer()
             trailingView
